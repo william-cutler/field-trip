@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 class TextWidget extends StatelessWidget {
   final WritingTask task;
   final Function onChanged;
-  final contoller = TextEditingController();
+  final controller = TextEditingController();
   TextWidget({Key key, this.task, this.onChanged}) : super(key: key) {
-    contoller.text = this.task.response;
+    controller.text = this.task.response;
   }
 
   @override
@@ -17,9 +17,9 @@ class TextWidget extends StatelessWidget {
       children: [
         Text(this.task.prompt),
         TextField(
-          controller: this.contoller,
+          controller: this.controller,
         ),
-        RaisedButton(onPressed: () => {onChanged(contoller.text)})
+        RaisedButton(onPressed: () => {onChanged(controller.text)})
       ],
     );
   }
