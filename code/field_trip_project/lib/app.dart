@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    throw new MaterialApp(
+    return new MaterialApp(
       title: 'Help',
       home: Activity(),
     );
@@ -19,27 +19,27 @@ class Activity extends StatefulWidget {
 }
 
 class ActivityState extends State<Activity> {
-  // WritingTask task = WritingTask('Help us we are scared');
+  WritingTask task = WritingTask('Help us we are scared');
 
   @override
   Widget build(BuildContext context) {
-    // var responseWidget = ResponseWidget(task: task);
+    var responseWidget = ResponseWidget(task: task);
     return Scaffold(
-      body: Text('I RAN'),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          TextWidget(
+              task: task,
+              onChanged: (text) => {
+                    setState(() => {task.setResponse(text)})
+                  }),
+          responseWidget
+        ],
+      ),
     );
   }
 }
 
-// Column(
-//       children: [
-//         TextWidget(
-//             task: task,
-//             onChanged: (text) => {
-//                   setState(() => {task.setResponse(text)})
-//                 }),
-//         responseWidget
-//       ],
-//     )
 class TextWidget extends StatelessWidget {
   final WritingTask task;
   final Function onChanged;
