@@ -56,6 +56,6 @@ class FieldTrip {
   }
 
   Activity getCurrActivity() {
-    return this.activities.elementAt(this.currActivity);
+    return this.activities[this.currActivity];
   }
 }

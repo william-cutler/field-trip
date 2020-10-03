@@ -10,18 +10,21 @@ class FieldTripWidget extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
+    print('Highest Level');
     return FieldTripState(this.fieldTrip);
   }
 }
 
 class FieldTripState extends State<StatefulWidget> {
   FieldTrip trip;
+
   FieldTripState(FieldTrip trip) {
     this.trip = trip;
   }
 
   @override
   Widget build(BuildContext context) {
+    print(this.trip.currActivity);
     if (!this.trip.getStarted()) {
       return this.beforeTrip();
     } else if (this.trip.getStarted() && !this.trip.getSubmitted()) {
@@ -45,7 +48,9 @@ class FieldTripState extends State<StatefulWidget> {
           Text(this.trip.description),
           RaisedButton(
               child: Text("Start"),
-              onPressed: () => setState(() => {this.trip.start()}))
+              onPressed: () => {
+                    setState(() => {this.trip.start()})
+                  })
         ],
       ),
     );
@@ -55,6 +60,9 @@ class FieldTripState extends State<StatefulWidget> {
     Row navRow = Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: this.getNavButtons());
+
+    print('I RUN');
+
     return Scaffold(
       resizeToAvoidBottomPadding: false,
       resizeToAvoidBottomInset: true,
@@ -62,6 +70,7 @@ class FieldTripState extends State<StatefulWidget> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Text(this.trip.getCurrActivity().desciption),
           ActivityWidget(activity: this.trip.getCurrActivity()),
           navRow
         ],
@@ -76,16 +85,22 @@ class FieldTripState extends State<StatefulWidget> {
     if (!this.trip.onFirstActivity()) {
       navButtons.add(RaisedButton(
           child: Text("Prev"),
-          onPressed: () => setState(() => {this.trip.prevActivity()})));
+          onPressed: () => {
+                setState(() => {this.trip.prevActivity()})
+              }));
     }
     if (!this.trip.onLastActivity()) {
       navButtons.add(RaisedButton(
           child: Text("Next"),
-          onPressed: () => setState(() => {this.trip.nextActivity()})));
+          onPressed: () => {
+                setState(() => {this.trip.nextActivity()})
+              }));
     } else {
       navButtons.add(RaisedButton(
           child: Text("Submit"),
-          onPressed: () => setState(() => {this.trip.submit()})));
+          onPressed: () => {
+                setState(() => {this.trip.submit()})
+              }));
     }
     return navButtons;
   }
