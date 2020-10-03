@@ -1,6 +1,7 @@
 import 'Task.dart';
 import 'package:flutter/material.dart';
 
+//Primary application class
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -11,6 +12,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
+// An Activity is a StatefulWidget with a state called "ActivityState"
 class Activity extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -18,20 +20,22 @@ class Activity extends StatefulWidget {
   }
 }
 
+//A state that contains the writing task
 class ActivityState extends State<Activity> {
   WritingTask task = WritingTask('Help us we are scared');
 
   @override
   Widget build(BuildContext context) {
-    var responseWidget = ResponseWidget(task: task);
+    var responseWidget = ResponseWidget(task: this.task);
+    //Google Maps would go here
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           TextWidget(
-              task: task,
+              task: this.task,
               onChanged: (text) => {
-                    setState(() => {task.setResponse(text)})
+                    setState(() => {this.task.setResponse(text)})
                   }),
           responseWidget
         ],
@@ -43,8 +47,10 @@ class ActivityState extends State<Activity> {
 class TextWidget extends StatelessWidget {
   final WritingTask task;
   final Function onChanged;
-  final contoller = TextEditingController();
-  TextWidget({Key key, this.task, this.onChanged}) : super(key: key);
+  final controller = TextEditingController();
+  TextWidget({Key key, this.task, this.onChanged}) : super(key: key) {
+    this.controller.text = this.task.response;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,18 +60,19 @@ class TextWidget extends StatelessWidget {
       children: [
         Text(this.task.prompt),
         TextField(
-          controller: this.contoller,
+          controller: this.controller,
         ),
-        RaisedButton(onPressed: () => {onChanged(contoller.text)})
+        RaisedButton(onPressed: () => {onChanged(controller.text)})
       ],
     );
   }
 }
 
+// To display the text given to the text box
 class ResponseWidget extends StatelessWidget {
   final WritingTask task;
 
-  const ResponseWidget({Key key, this.task}) : super(key: key);
+  ResponseWidget({Key key, this.task}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
