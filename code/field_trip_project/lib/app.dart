@@ -49,7 +49,7 @@ class TextWidget extends StatelessWidget {
   final Function onChanged;
   final controller = TextEditingController();
   TextWidget({Key key, this.task, this.onChanged}) : super(key: key) {
-    this.controller.text = this.task.response;
+    controller.text = this.task.response;
   }
 
   @override
