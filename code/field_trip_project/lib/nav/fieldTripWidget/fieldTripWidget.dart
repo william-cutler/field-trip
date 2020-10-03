@@ -56,11 +56,13 @@ class FieldTripState extends State<StatefulWidget> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: this.getNavButtons());
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(title: Text(this.trip.name)),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          ActivityWidget(activityName: this.trip.currActivity.toString()),
+          ActivityWidget(activity: this.trip.getCurrActivity()),
           navRow
         ],
       ),

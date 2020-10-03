@@ -4,30 +4,34 @@ import 'textWidget.dart';
 import 'responseWidget.dart';
 
 class TaskWidget extends StatefulWidget {
+  final WritingTask task;
+
+  const TaskWidget({Key key, this.task}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
-    return TaskWidgetState();
+    return TaskWidgetState(this.task);
   }
 }
 
 class TaskWidgetState extends State<TaskWidget> {
-  WritingTask task = WritingTask('Help us we are scared');
+  final WritingTask task;
+
+  TaskWidgetState(this.task);
 
   @override
   Widget build(BuildContext context) {
     var responseWidget = ResponseWidget(task: task);
-    return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          TextWidget(
-              task: task,
-              onChanged: (text) => {
-                    setState(() => {task.setResponse(text)})
-                  }),
-          responseWidget
-        ],
-      ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        TextWidget(
+            task: task,
+            onChanged: (text) => {
+                  setState(() => {task.setResponse(text)})
+                }),
+        responseWidget
+      ],
     );
   }
 }

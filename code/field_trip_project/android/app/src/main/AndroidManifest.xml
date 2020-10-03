@@ -9,6 +9,11 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="field_trip_project"
         android:icon="@mipmap/ic_launcher">
+
+                <!-- TODO: Add your API key here -->
+        <meta-data android:name="com.google.android.geo.API_KEY" 
+          android:value="AIzaSyDHPXVMDkesnl8NhO6U3RcP6cyVceLi6yU" />
+
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
@@ -16,8 +21,6 @@
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:hardwareAccelerated="true"
             android:windowSoftInputMode="adjustResize">
-            <meta-data android:name="com.google.android.geo.API_KEY"
-              android:value="AIzaSyDHPXVMDkesnl8NhO6U3RcP6cyVceLi6yU"/>
             <!-- Specifies an Android theme to apply to this Activity as soon as
                  the Android process has started. This theme is visible to the user
                  while the Flutter UI initializes. After that, this theme continues

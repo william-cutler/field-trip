@@ -17,9 +17,16 @@ class TextWidget extends StatelessWidget {
       children: [
         Text(this.task.prompt),
         TextField(
+          maxLines: null,
           controller: this.controller,
         ),
-        RaisedButton(onPressed: () => {onChanged(controller.text)})
+        Center(
+            child: Container(
+          width: 100.0,
+          child: RaisedButton(
+              child: Text('Submit'),
+              onPressed: () => {onChanged(controller.text)}),
+        )),
       ],
     );
   }

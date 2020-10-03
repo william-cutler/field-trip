@@ -8,6 +8,10 @@ class ResponseWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(task.response);
+    if (task.response == "") {
+      return Text("");
+    } else {
+      return Text("Submitted");
+    }
   }
 }
