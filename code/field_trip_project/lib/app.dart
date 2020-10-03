@@ -1,5 +1,6 @@
 import 'Task.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -44,7 +45,9 @@ class TextWidget extends StatelessWidget {
   final WritingTask task;
   final Function onChanged;
   final contoller = TextEditingController();
-  TextWidget({Key key, this.task, this.onChanged}) : super(key: key);
+  TextWidget({Key key, this.task, this.onChanged}) : super(key: key) {
+    contoller.text = this.task.response;
+  }
 
   @override
   Widget build(BuildContext context) {
