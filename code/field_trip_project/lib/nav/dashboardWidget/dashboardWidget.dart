@@ -12,7 +12,25 @@ class Dashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text("My Dashboard")),
+        appBar: AppBar(
+          leading: Container(
+              decoration: new BoxDecoration(
+                  image: DecorationImage(
+            fit: BoxFit.scaleDown,
+            alignment: FractionalOffset.topCenter,
+            image: AssetImage('images/logo.png'),
+          ))),
+          automaticallyImplyLeading: false,
+          backgroundColor: Color(0xff885566),
+          title: Text('Dashboard',
+              style: TextStyle(
+                color: Color(0xbcffffff),
+                fontSize: 18,
+                fontFamily: "Roboto",
+                fontWeight: FontWeight.w500,
+                letterSpacing: 1.25,
+              )),
+        ),
         body: Padding(
             padding: EdgeInsets.all(4.0),
             child:
@@ -81,15 +99,41 @@ class Dashboard extends StatelessWidget {
             child: Column(children: [
           Row(children: [
             Container(
-                width: 100.0,
+                width: 110.0,
                 height: 60.0,
-                child: Center(
-                    child: new Image.asset(trip.titleImgPath,
-                        width: 100.0, height: 60.0))),
+                decoration: new BoxDecoration(
+                    image: DecorationImage(
+                  fit: BoxFit.fitWidth,
+                  alignment: FractionalOffset.topCenter,
+                  image: AssetImage(trip.titleImgPath),
+                ))),
+            SizedBox(
+              width: 5,
+            ),
             Flexible(
                 child: Column(children: [
-              Text(trip.name, overflow: TextOverflow.clip),
-              Text(trip.description, overflow: TextOverflow.clip)
+              Text(
+                trip.name,
+                style: TextStyle(
+                  color: Color(0xff565656),
+                  fontSize: 18,
+                  fontFamily: "Nunito",
+                  fontWeight: FontWeight.w400,
+                ),
+                overflow: TextOverflow.clip,
+                textAlign: TextAlign.center,
+              ),
+              Text(
+                trip.description,
+                style: TextStyle(
+                  color: Color(0xff565656),
+                  fontSize: 12,
+                  fontFamily: "Nunito",
+                  fontWeight: FontWeight.w200,
+                ),
+                overflow: TextOverflow.clip,
+                textAlign: TextAlign.center,
+              )
             ]))
           ]),
         ])));

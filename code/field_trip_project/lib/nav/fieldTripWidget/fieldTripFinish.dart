@@ -55,8 +55,11 @@ class FieldTripFinish extends StatelessWidget {
 
   Widget renderFinalActivity(Activity act, BuildContext context) {
     return Container(
-        width: MediaQuery.of(context).size.width * 90,
+        width: MediaQuery.of(context).size.width * .90,
         child: Column(children: [
+          SizedBox(
+            height: 5,
+          ),
           Text(act.title,
               textAlign: TextAlign.center,
               style: TextStyle(
@@ -71,11 +74,16 @@ class FieldTripFinish extends StatelessWidget {
                 fontSize: 10,
                 fontStyle: FontStyle.italic,
                 fontFamily: "Helvetica Neue",
-                fontWeight: FontWeight.w400,
+                fontWeight: FontWeight.w200,
               )),
           Column(children: [
             ...act.writtenTasks.map((task) => this.renderTask(task, context))
-          ])
+          ]),
+          Container(
+            color: Color(0xff565656),
+            height: 1,
+            width: MediaQuery.of(context).size.width * .95,
+          )
         ]));
   }
 
@@ -95,7 +103,7 @@ class FieldTripFinish extends StatelessWidget {
               style: TextStyle(
                 fontSize: 12,
                 fontFamily: "Helvetica Neue",
-                fontWeight: FontWeight.w400,
+                fontWeight: FontWeight.w200,
               )),
           SizedBox(
             height: 5,
