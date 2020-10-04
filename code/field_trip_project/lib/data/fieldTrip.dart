@@ -5,8 +5,11 @@ import 'activity.dart';
 class FieldTrip {
   String name = "";
   String description = "";
+
   List<Activity> activities = [];
   int currActivity = 0;
+
+  String titleImgPath = "";
 
   bool submitted = false;
   bool getSubmitted() => this.submitted;
@@ -14,7 +17,7 @@ class FieldTrip {
   bool started = false;
   bool getStarted() => this.started;
 
-  FieldTrip({this.name, this.description, this.activities});
+  FieldTrip({this.name, this.description, this.titleImgPath, this.activities});
 
   // Increments the current activity index if not currently on final activity
   void nextActivity() {

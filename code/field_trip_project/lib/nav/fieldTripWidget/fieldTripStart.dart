@@ -15,7 +15,7 @@ class FieldTripStart extends StatelessWidget {
             child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Image(image: AssetImage('images/boston.jpg')),
+        Image(image: AssetImage(this.trip.titleImgPath)),
         Text(this.trip.name),
         Text(this.trip.description),
         RaisedButton(
