@@ -36,8 +36,9 @@ class MyApp extends StatelessWidget {
       title: 'FT App',
       home: FieldTripStart(
           trip: FieldTrip(
-              name: "First FT",
-              description: "Our first FT",
+              name: "Boston Historical Field Trip",
+              description:
+                  "A field trip along some of the most popular historical destinations.",
               activities: activities)),
     );
   }
