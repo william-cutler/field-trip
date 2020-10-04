@@ -29,9 +29,10 @@ class _MapWidgetState extends State<MapWidget> {
       ),
       child: GoogleMap(
         onMapCreated: _onMapCreated,
+        markers: {Marker(markerId: MarkerId("Pin Marker"), position: _center)},
         initialCameraPosition: CameraPosition(
           target: _center,
-          zoom: 11.0,
+          zoom: 16.0,
         ),
       ),
     );

@@ -58,4 +58,12 @@ class FieldTrip {
   Activity getCurrActivity() {
     return this.activities[this.currActivity];
   }
+
+  String toString() {
+    String result = "";
+    for (Activity act in this.activities) {
+      result += act.toString() + "\n";
+    }
+    return result;
+  }
 }

@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 
 class TextWidget extends StatelessWidget {
   final WritingTask task;
-  final Function onChanged;
   final controller = TextEditingController();
-  TextWidget({Key key, this.task, this.onChanged}) : super(key: key) {
+  TextWidget({Key key, this.task}) : super(key: key) {
     controller.text = this.task.response;
   }
 
@@ -16,7 +15,7 @@ class TextWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Text(this.task.prompt),
-        TextField(
+        TextFormField(
           maxLines: null,
           controller: this.controller,
         ),
@@ -25,7 +24,9 @@ class TextWidget extends StatelessWidget {
           width: 100.0,
           child: RaisedButton(
               child: Text('Submit'),
-              onPressed: () => {onChanged(controller.text)}),
+              onPressed: () {
+                this.task.setResponse(controller.text);
+              }),
         )),
       ],
     );

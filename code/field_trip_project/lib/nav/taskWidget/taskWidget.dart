@@ -3,33 +3,22 @@ import '../../data/task.dart';
 import 'textWidget.dart';
 import 'responseWidget.dart';
 
-class TaskWidget extends StatefulWidget {
+class TaskWidget extends StatelessWidget {
   final WritingTask task;
+  final TextEditingController controller;
 
-  const TaskWidget({Key key, this.task}) : super(key: key);
-
-  @override
-  State<StatefulWidget> createState() {
-    return TaskWidgetState(this.task);
-  }
-}
-
-class TaskWidgetState extends State<TaskWidget> {
-  final WritingTask task;
-
-  TaskWidgetState(this.task);
+  const TaskWidget({Key key, this.task, this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    print('herlp');
     var responseWidget = ResponseWidget(task: task);
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         TextWidget(
-            task: task,
-            onChanged: (text) => {
-                  setState(() => {task.setResponse(text)})
-                }),
+          task: task,
+        ),
         responseWidget
       ],
     );

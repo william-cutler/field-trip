@@ -58,11 +58,10 @@ class FieldTripState extends State<StatefulWidget> {
 
   Widget duringTrip() {
     Row navRow = Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: this.getNavButtons());
-
-    print('I RUN');
-
+      mainAxisAlignment: MainAxisAlignment.center,
+      //children: this.getNavButtons());
+    );
+    setState(() {});
     return Scaffold(
       resizeToAvoidBottomPadding: false,
       resizeToAvoidBottomInset: true,
@@ -70,38 +69,10 @@ class FieldTripState extends State<StatefulWidget> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(this.trip.getCurrActivity().desciption),
-          ActivityWidget(activity: this.trip.getCurrActivity()),
-          navRow
+          Text(this.trip.getCurrActivity().title),
+          ActivityWidget(trip: this.trip),
         ],
       ),
     );
-  }
-
-  // Conditionally adding 'next', 'prev' and 'submit' buttons depending
-  // on where user is in list of activities
-  List<Widget> getNavButtons() {
-    List<Widget> navButtons = [];
-    if (!this.trip.onFirstActivity()) {
-      navButtons.add(RaisedButton(
-          child: Text("Prev"),
-          onPressed: () => {
-                setState(() => {this.trip.prevActivity()})
-              }));
-    }
-    if (!this.trip.onLastActivity()) {
-      navButtons.add(RaisedButton(
-          child: Text("Next"),
-          onPressed: () => {
-                setState(() => {this.trip.nextActivity()})
-              }));
-    } else {
-      navButtons.add(RaisedButton(
-          child: Text("Submit"),
-          onPressed: () => {
-                setState(() => {this.trip.submit()})
-              }));
-    }
-    return navButtons;
   }
 }
