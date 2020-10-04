@@ -5,31 +5,40 @@ import 'package:field_trip_project/nav/fieldTripWidget/fieldTripWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import 'fieldTripWidget/fieldTripStart.dart';
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Activity> activities = [];
-    activities.add(setUpActivity());
-    activities.add(setUpActivity());
-    activities.add(setUpActivity());
-    print(activities.length.toString());
+    Activity harvard = Activity(
+        LatLng(42.3770, -71.1167),
+        "Walk around Harvard's campus.",
+        "0 Harvard Square, Cambridge, MA 02138", [
+      WritingTask("When was Harvard founded?"),
+      WritingTask("What building looked the coolest to you?")
+    ]);
+    Activity copley = Activity(LatLng(42.3432, -71.0726), "Copley Square.",
+        "206 Clarendon St, Boston, MA 02116", [
+      WritingTask("When was the Church in Copley square built?"),
+      WritingTask("What public building is across the square from the church?")
+    ]);
+    Activity brookline = Activity(LatLng(42.3427, -71.1225), "Brookline.",
+        "290 Harvard St, Brookline, MA 02446", [
+      WritingTask(
+          "What famous theater in Brookline shares a name with a U.S. president?")
+    ]);
+    activities.add(harvard);
+    activities.add(copley);
+    activities.add(brookline);
 
     return new MaterialApp(
-      title: 'Help',
-      home: FieldTripWidget(
-          fieldTrip: FieldTrip(
+      title: 'FT App',
+      home: FieldTripStart(
+          trip: FieldTrip(
               name: "First FT",
               description: "Our first FT",
               activities: activities)),
     );
-  }
-
-  Activity setUpActivity() {
-    List<WritingTask> tasks = [];
-    tasks.add(WritingTask('Why are i still here?'));
-    tasks.add(WritingTask('Just to suffer?'));
-    tasks.add(WritingTask('Every night I feel my leg disappear!'));
-    LatLng loc = LatLng(51.5074, 0.1278);
-    return Activity(loc, "Can you help me find my cat?", tasks);
   }
 }

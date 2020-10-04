@@ -8,4 +8,8 @@ class WritingTask {
   void setResponse(String newResponse) {
     this.response = newResponse;
   }
+
+  String toString() {
+    return "[" + this.prompt + " : " + this.response + "]";
+  }
 }

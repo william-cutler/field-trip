@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 
 class ResponseWidget extends StatelessWidget {
   final WritingTask task;
+  final TextEditingController controller;
 
-  const ResponseWidget({Key key, this.task}) : super(key: key);
+  const ResponseWidget({Key key, this.task, this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
