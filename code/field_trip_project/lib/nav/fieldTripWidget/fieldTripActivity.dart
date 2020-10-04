@@ -38,26 +38,45 @@ class FieldTripActivity extends StatelessWidget {
                 child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                SizedBox(height: 25),
-                Text(this.trip.getCurrActivity().title),
-                this.renderActivity(this.trip.getCurrActivity())
+                SizedBox(height: 15),
+                Text(this.trip.getCurrActivity().title,
+                    style: TextStyle(
+                      color: Color(0xff565656),
+                      fontSize: 24,
+                      fontFamily: "Nunito",
+                      fontWeight: FontWeight.w400,
+                    )),
+                SizedBox(height: 15),
+                this.renderActivity(this.trip.getCurrActivity(), context)
               ],
             ))));
   }
 
   // Render the given activity with Map widget, WritingTask widgets, and
   // navigation buttons
-  Widget renderActivity(Activity currActivity) {
+  Widget renderActivity(Activity currActivity, BuildContext context) {
     return SingleChildScrollView(
         reverse: true,
         child: Column(children: [
           Container(
             height: 200,
+            decoration:
+                BoxDecoration(border: Border.all(color: Color(0xff885566))),
+            width: MediaQuery.of(context).size.width * 0.90,
             child: MapWidget(loc: this.trip.getCurrActivity().location),
           ),
-          Text(this.trip.getCurrActivity().address),
+          SizedBox(height: 5),
+          Text(this.trip.getCurrActivity().address,
+              style: TextStyle(
+                color: Color(0xff565656),
+                fontSize: 14,
+                fontStyle: FontStyle.italic,
+                fontFamily: "Helvetica Neue",
+                fontWeight: FontWeight.w400,
+              )),
+          SizedBox(height: 5),
           Container(
-            height: 300,
+            height: 390,
             child: ListView(children: [
               ...this
                   .trip
