@@ -20,6 +20,31 @@ class FieldTripActivity extends StatelessWidget {
     }
     print(this.trip.toString());
     return Scaffold(
+        appBar: AppBar(
+          title: const Text('AppBar Demo'),
+          actions: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.navigate_before),
+              tooltip: 'Prev page',
+              onPressed: () {
+                this.trip.prevActivity();
+                Navigator.pop(context);
+              },
+            ),
+            IconButton(
+              icon: const Icon(Icons.navigate_next),
+              tooltip: 'Next page',
+              onPressed: () {
+                this.trip.nextActivity();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => FieldTripActivity(trip: trip)),
+                );
+              },
+            ),
+          ],
+        ),
         body: SingleChildScrollView(
             reverse: true,
             child: Center(
