@@ -44,9 +44,9 @@ class FieldTrip {
   }
 
   void start() {
-    if (this.started) {
-      throw "Trip already started.";
-    }
+    // if (this.started) {
+    //   throw "Trip already started.";
+    // }
     this.started = true;
   }
 

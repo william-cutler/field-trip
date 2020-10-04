@@ -25,34 +25,64 @@ class FieldTripStart extends StatelessWidget {
         ),
         body: Center(
             child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Image(
-              image: AssetImage('images/boston.jpg'),
-              width: MediaQuery.of(context).size.width * 0.90,
-            ),
-            Text("Explore Old City Hall",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Color(0xff565656),
-                  fontSize: 24,
-                  fontFamily: "Nunito",
-                  fontWeight: FontWeight.w400,
-                )),
-            Text(this.trip.name),
-            Text(this.trip.description),
-            RaisedButton(
-              child: Text("Start"),
-              onPressed: () {
-                this.trip.start();
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => FieldTripActivity(trip: trip)),
-                );
-              },
-            ),
-          ],
-        )));
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+              Image(
+                image: AssetImage('images/boston.jpg'),
+                height: MediaQuery.of(context).size.width * 0.5,
+                width: MediaQuery.of(context).size.width * 0.90,
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                  width: MediaQuery.of(context).size.width * 0.90,
+                  child: Text(this.trip.name,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Color(0xff565656),
+                        fontSize: 24,
+                        fontFamily: "Nunito",
+                        fontWeight: FontWeight.w400,
+                      ))),
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                  width: MediaQuery.of(context).size.width * 0.90,
+                  child: Text(this.trip.description,
+                      style: TextStyle(
+                        color: Color(0xff565656),
+                        fontSize: 18,
+                        fontFamily: "Helvetica Neue",
+                        fontWeight: FontWeight.w400,
+                      ))),
+              SizedBox(
+                height: 10,
+              ),
+              Center(
+                  child: Container(
+                      width: 100.0,
+                      child: RaisedButton(
+                          color: Color(0xff885566),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18.0),
+                              side: BorderSide(color: Colors.red)),
+                          child: Text('Start',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontFamily: "Nunito",
+                                fontWeight: FontWeight.w400,
+                              )),
+                          onPressed: () {
+                            this.trip.start();
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        FieldTripActivity(trip: trip)));
+                          }))),
+            ])));
   }
 }

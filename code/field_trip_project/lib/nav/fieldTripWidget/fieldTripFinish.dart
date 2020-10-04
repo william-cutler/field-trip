@@ -14,38 +14,92 @@ class FieldTripFinish extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          backgroundColor: Color(0xff885566),
+          title: Text(this.trip.name,
+              style: TextStyle(
+                color: Color(0xbcffffff),
+                fontSize: 18,
+                fontFamily: "Roboto",
+                fontWeight: FontWeight.w500,
+                letterSpacing: 1.25,
+              )),
+        ),
         body: Center(
-      child: this.renderFinal(),
-    ));
+          child: this.renderFinal(context),
+        ));
   }
 
-  Widget renderFinal() {
+  Widget renderFinal(BuildContext context) {
     return SingleChildScrollView(
         reverse: true,
         child: Column(children: [
+          Image(
+            image: AssetImage('images/boston.jpg'),
+            height: MediaQuery.of(context).size.width * 0.5,
+            width: MediaQuery.of(context).size.width * 0.90,
+          ),
+          SizedBox(
+            height: 10,
+          ),
           ...this
               .trip
               .activities
-              .map((activity) => this.renderFinalActivity(activity))
+              .map((activity) => this.renderFinalActivity(activity, context)),
+          SizedBox(
+            height: 2,
+          )
         ]));
   }
 
-  Widget renderFinalActivity(Activity act) {
-    return Column(children: [
-      Text(act.title,
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-      Text(act.address,
-          style: TextStyle(fontStyle: FontStyle.italic, fontSize: 12)),
-      Column(
-          children: [...act.writtenTasks.map((task) => this.renderTask(task))])
-    ]);
+  Widget renderFinalActivity(Activity act, BuildContext context) {
+    return Container(
+        width: MediaQuery.of(context).size.width * 90,
+        child: Column(children: [
+          Text(act.title,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Color(0xff565656),
+                fontSize: 24,
+                fontFamily: "Nunito",
+                fontWeight: FontWeight.w400,
+              )),
+          Text(act.address,
+              style: TextStyle(
+                color: Color(0xff565656),
+                fontSize: 10,
+                fontStyle: FontStyle.italic,
+                fontFamily: "Helvetica Neue",
+                fontWeight: FontWeight.w400,
+              )),
+          Column(children: [
+            ...act.writtenTasks.map((task) => this.renderTask(task, context))
+          ])
+        ]));
   }
 
-  Widget renderTask(WritingTask task) {
-    return Column(children: [
-      Text(task.prompt,
-          style: TextStyle(fontStyle: FontStyle.italic, fontSize: 16)),
-      Text(task.response)
-    ]);
+  Widget renderTask(WritingTask task, BuildContext context) {
+    return Container(
+        width: MediaQuery.of(context).size.width * 0.90,
+        child: Column(children: [
+          Text(task.prompt,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 18,
+                fontFamily: "Helvetica Neue",
+                fontWeight: FontWeight.w400,
+              )),
+          Text(task.response,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 12,
+                fontFamily: "Helvetica Neue",
+                fontWeight: FontWeight.w400,
+              )),
+          SizedBox(
+            height: 5,
+          )
+        ]));
   }
 }
