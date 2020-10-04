@@ -18,32 +18,19 @@ class FieldTripActivity extends StatelessWidget {
     if (!this.trip.started || this.trip.submitted) {
       throw "Trip must be in progress.";
     }
-    print(this.trip.toString());
     return Scaffold(
         appBar: AppBar(
-          title: const Text('AppBar Demo'),
-          actions: <Widget>[
-            IconButton(
-              icon: const Icon(Icons.navigate_before),
-              tooltip: 'Prev page',
-              onPressed: () {
-                this.trip.prevActivity();
-                Navigator.pop(context);
-              },
-            ),
-            IconButton(
-              icon: const Icon(Icons.navigate_next),
-              tooltip: 'Next page',
-              onPressed: () {
-                this.trip.nextActivity();
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => FieldTripActivity(trip: trip)),
-                );
-              },
-            ),
-          ],
+          automaticallyImplyLeading: false,
+          backgroundColor: Color(0xff885566),
+          title: Text(this.trip.name,
+              style: TextStyle(
+                color: Color(0xbcffffff),
+                fontSize: 18,
+                fontFamily: "Roboto",
+                fontWeight: FontWeight.w500,
+                letterSpacing: 1.25,
+              )),
+          actions: this.getNavButtons(context),
         ),
         body: SingleChildScrollView(
             reverse: true,
@@ -53,10 +40,7 @@ class FieldTripActivity extends StatelessWidget {
               children: <Widget>[
                 SizedBox(height: 25),
                 Text(this.trip.getCurrActivity().title),
-                this.renderActivity(this.trip.getCurrActivity()),
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: this.getNavButtons(context)),
+                this.renderActivity(this.trip.getCurrActivity())
               ],
             ))));
   }
@@ -90,16 +74,18 @@ class FieldTripActivity extends StatelessWidget {
   List<Widget> getNavButtons(BuildContext context) {
     List<Widget> navButtons = [];
     if (!this.trip.onFirstActivity()) {
-      navButtons.add(RaisedButton(
-          child: Text("Prev"),
+      navButtons.add(IconButton(
+          icon: const Icon(Icons.navigate_before),
+          tooltip: 'Prev page',
           onPressed: () {
             this.trip.prevActivity();
             Navigator.pop(context);
           }));
     }
     if (!this.trip.onLastActivity()) {
-      navButtons.add(RaisedButton(
-          child: Text("Next"),
+      navButtons.add(IconButton(
+          icon: const Icon(Icons.navigate_next),
+          tooltip: 'Next page',
           onPressed: () {
             this.trip.nextActivity();
             Navigator.push(
@@ -109,8 +95,9 @@ class FieldTripActivity extends StatelessWidget {
             );
           }));
     } else {
-      navButtons.add(RaisedButton(
-          child: Text("Submit"),
+      navButtons.add(IconButton(
+          icon: const Icon(Icons.alarm_on_outlined),
+          tooltip: 'Submit',
           onPressed: () {
             this.trip.submit();
             Navigator.push(
