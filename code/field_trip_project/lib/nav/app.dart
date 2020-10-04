@@ -1,10 +1,12 @@
 import 'package:field_trip_project/data/activity.dart';
 import 'package:field_trip_project/data/fieldTrip.dart';
+import 'package:field_trip_project/data/student.dart';
 import 'package:field_trip_project/data/task.dart';
 import 'package:field_trip_project/nav/fieldTripWidget/fieldTripWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import 'dashboardWidget/dashboardWidget.dart';
 import 'fieldTripWidget/fieldTripStart.dart';
 
 class MyApp extends StatelessWidget {
@@ -32,14 +34,14 @@ class MyApp extends StatelessWidget {
     activities.add(copley);
     activities.add(brookline);
 
-    return new MaterialApp(
-      title: 'FT App',
-      home: FieldTripStart(
-          trip: FieldTrip(
-              name: "Boston Historical Field Trip",
-              description:
-                  "A field trip along some of the most popular historical destinations.",
-              activities: activities)),
-    );
+    FieldTrip bostonTrip = FieldTrip(
+        name: "Boston Historical Field Trip",
+        description:
+            "A field trip along some of the most popular historical destinations.",
+        titleImgPath: 'images/boston.jpg',
+        activities: activities);
+
+    Student brittney = Student(name: "Brittney", trips: [bostonTrip]);
+    return new MaterialApp(title: 'FT App', home: Dashboard(student: brittney));
   }
 }
