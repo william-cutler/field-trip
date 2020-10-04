@@ -61,10 +61,11 @@ class FieldTripState extends State<StatefulWidget> {
       appBar: AppBar(title: Text(this.trip.name)),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
+        PageView(controller: PageController(initialPage: 0), children: [this.trip.activities.map((activity) => ActivityWidget(activity:activity))])
+        /*children: [
           ActivityWidget(activity: this.trip.getCurrActivity()),
           navRow
-        ],
+        ],*/
       ),
     );
   }

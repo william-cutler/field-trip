@@ -14,11 +14,11 @@ class ActivityWidget extends StatelessWidget {
         reverse: true,
         child: Column(children: [
           Container(
-            height: 200,
+            height: 100,
             child: MapWidget(loc: this.activity.location),
           ),
           Container(
-            height: 500,
+            height: 200,
             child: ListView(children: [
               ...activity.writtenTasks.map((task) => TaskWidget(task: task))
             ]),
