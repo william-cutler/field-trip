@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 
 import 'fieldTripFinish.dart';
 
+// A widget to render the current activity in the field trip
 class FieldTripActivity extends StatelessWidget {
   final FieldTrip trip;
 
@@ -14,6 +15,9 @@ class FieldTripActivity extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (!this.trip.started || this.trip.submitted) {
+      throw "Trip must be in progress.";
+    }
     print(this.trip.toString());
     return Scaffold(
         body: SingleChildScrollView(
@@ -25,11 +29,15 @@ class FieldTripActivity extends StatelessWidget {
                 SizedBox(height: 25),
                 Text(this.trip.getCurrActivity().title),
                 this.renderActivity(this.trip.getCurrActivity()),
-                Row(children: this.getNavButtons(context)),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: this.getNavButtons(context)),
               ],
             ))));
   }
 
+  // Render the given activity with Map widget, WritingTask widgets, and
+  // navigation buttons
   Widget renderActivity(Activity currActivity) {
     return SingleChildScrollView(
         reverse: true,
