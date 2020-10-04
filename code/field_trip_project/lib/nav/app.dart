@@ -41,7 +41,22 @@ class MyApp extends StatelessWidget {
         titleImgPath: 'images/boston.jpg',
         activities: activities);
 
-    Student brittney = Student(name: "Brittney", trips: [bostonTrip]);
+    FieldTrip outdoorTrip = FieldTrip(
+        name: "Local Outdoor Field Trip",
+        description:
+            "A field trip along some of the most popular historical destinations.",
+        titleImgPath: 'images/outdoor.jpg',
+        activities: activities);
+
+    FieldTrip mfaTrip = FieldTrip(
+        name: "MFA Outdoor Art",
+        description:
+            "Tour art pieces featured outside of the Boston Museum of Fine Arts.",
+        titleImgPath: 'images/mfa.jpg',
+        activities: activities);
+
+    Student brittney =
+        Student(name: "Brittney", trips: [bostonTrip, outdoorTrip, mfaTrip]);
     return new MaterialApp(title: 'FT App', home: Dashboard(student: brittney));
   }
 }

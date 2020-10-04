@@ -12,41 +12,46 @@ class Dashboard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: Text("My Dashboard")),
-        body: Center(
-            child: Column(children: [
-          Text(this.student.name),
+        body: Column(children: [
+          Text("Welcome back, " + this.student.name),
           Text("My Field Trips"),
-          this.renderTripInList(this.student.trips.elementAt(0), context)
-          /*ListView(children: [
-            ...this
-                .student
-                .trips
-                .map((trip) => this.renderTripInList(trip, context))
-          ])*/
+          //this.renderTripInList(this.student.trips.elementAt(0), context)
+          Column(
+              children: this.student.trips.map((trip) {
+            return this.renderTripInList(trip, context);
+          }).toList())
           /*ListView.builder(
               itemCount: this.student.trips.length,
               itemBuilder: (context, itemIndex) {
                 return Card(
                     child: Text(this.student.trips.elementAt(itemIndex).name));
               })*/
-        ])));
+        ]));
   }
 
   Widget renderTripInList(FieldTrip trip, BuildContext context) {
-    return Column(children: [
-      Row(children: [
-        Image(image: AssetImage(trip.titleImgPath)),
-        Column(children: [Text(trip.name), Text(trip.description)])
-      ]),
-      RaisedButton(
-          child: Text("More"),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => FieldTripStart(trip: trip)),
-            );
-          })
-    ]);
+    return InkWell(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => FieldTripStart(trip: trip)),
+          );
+        },
+        child: Card(
+            child: Column(children: [
+          Row(children: [
+            Container(
+                width: 100.0,
+                height: 60.0,
+                child: Center(
+                    child: new Image.asset(trip.titleImgPath,
+                        width: 100.0, height: 60.0))),
+            Flexible(
+                child: Column(children: [
+              Text(trip.name, overflow: TextOverflow.clip),
+              Text(trip.description, overflow: TextOverflow.clip)
+            ]))
+          ]),
+        ])));
   }
 }
