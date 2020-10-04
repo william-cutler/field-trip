@@ -11,7 +11,6 @@ class TaskWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('herlp');
     var responseWidget = ResponseWidget(task: task);
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
