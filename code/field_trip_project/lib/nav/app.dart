@@ -2,7 +2,6 @@ import 'package:field_trip_project/data/activity.dart';
 import 'package:field_trip_project/data/fieldTrip.dart';
 import 'package:field_trip_project/data/student.dart';
 import 'package:field_trip_project/data/task.dart';
-import 'package:field_trip_project/nav/fieldTripWidget/fieldTripWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
