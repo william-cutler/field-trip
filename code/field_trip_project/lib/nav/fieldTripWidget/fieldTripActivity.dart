@@ -16,15 +16,18 @@ class FieldTripActivity extends StatelessWidget {
   Widget build(BuildContext context) {
     print(this.trip.toString());
     return Scaffold(
-        body: Center(
-            child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Text(this.trip.getCurrActivity().title),
-        this.renderActivity(this.trip.getCurrActivity()),
-        Row(children: this.getNavButtons(context)),
-      ],
-    )));
+        body: SingleChildScrollView(
+            reverse: true,
+            child: Center(
+                child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(height: 25),
+                Text(this.trip.getCurrActivity().title),
+                this.renderActivity(this.trip.getCurrActivity()),
+                Row(children: this.getNavButtons(context)),
+              ],
+            ))));
   }
 
   Widget renderActivity(Activity currActivity) {
@@ -46,7 +49,6 @@ class FieldTripActivity extends StatelessWidget {
                   .map((task) => TaskWidget(task: task))
             ]),
           ),
-          // ListView(children: [Text('asdas'), Text('asd11')]),
         ]));
   }
 
