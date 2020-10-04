@@ -3,19 +3,22 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MapWidget extends StatefulWidget {
   final LatLng loc;
+  final double zoom;
 
-  const MapWidget({Key key, this.loc = const LatLng(45.521563, -122.677433)})
+  const MapWidget(
+      {Key key, this.loc = const LatLng(42.3601, -71.0589), this.zoom = 16.0})
       : super(key: key);
   @override
-  _MapWidgetState createState() => _MapWidgetState(this.loc);
+  _MapWidgetState createState() => _MapWidgetState(this.loc, this.zoom);
 }
 
 class _MapWidgetState extends State<MapWidget> {
   GoogleMapController mapController;
 
   final LatLng _center;
+  final double _zoom;
 
-  _MapWidgetState(this._center);
+  _MapWidgetState(this._center, this._zoom);
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
@@ -32,7 +35,7 @@ class _MapWidgetState extends State<MapWidget> {
         markers: {Marker(markerId: MarkerId("Pin Marker"), position: _center)},
         initialCameraPosition: CameraPosition(
           target: _center,
-          zoom: 16.0,
+          zoom: this._zoom,
         ),
       ),
     );
